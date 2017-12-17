@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "canvas": "github:Automattic/node-canvas",
     "chalk": "^2.3.0",
     "discord.js": "github:hydrabolt/discord.js",
     "duration-js": "^4.0.0",
