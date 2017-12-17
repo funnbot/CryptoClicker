@@ -14,6 +14,6 @@ module.exports = new Clicker.Command({
   alias: ["buy", "producers"],
 
   run: async (message, bot, send) => {
-    
+
   }
 })
