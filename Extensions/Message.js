@@ -11,6 +11,12 @@ class Message extends Extension {
     return this.channel.send.bind(this.channel)
   }
 
+  async deleteAfter(ms = 1000) {
+    await timeout(ms)
+    await this.delete()
+    return 0
+  }
+
   SetupExtension() {
     this.prefix = this.guild ? this.guild.prefix : PREFIX
     let mentionRegex = new RegExp(`<@!?${this.client.user.id}>`)

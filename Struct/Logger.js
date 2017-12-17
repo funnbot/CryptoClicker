@@ -32,4 +32,4 @@ class Logger {
   }
 }
 
-global.logger = Logger
+module.exports = Logger

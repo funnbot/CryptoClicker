@@ -1,4 +1,5 @@
 global.Promise = require("bluebird")
+global.logger = require("./Logger.js")
 
 const Discord = require("discord.js")
 const CommandLoader = require("./CommandLoader.js")

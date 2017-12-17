@@ -38,7 +38,7 @@ const config = {
             15,
             10000,
             "Graphics Card",
-            "But can it run Crisys?"
+          "But can it run Crysis?"
         ],
         asic: [
             25,

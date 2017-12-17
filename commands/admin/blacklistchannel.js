@@ -5,7 +5,7 @@ module.exports = new Clicker.Command({
   help: "Buy mining hardware to increase production per second.",
   example: "${p}hardware",
   argExample: "none",
-  userPerms: 0,
+  userPerms: 1,
   botPerms: ["EMBED_LINKS", "ADD_REACTIONS"],
   alias: ["buy", "producers"],
   args: [{
@@ -33,15 +33,11 @@ module.exports = new Clicker.Command({
         .setFooter(`Use \`${message.prefix}hardware <number>\` to buy a producer.`)
       return send(embed)
     }
-    const key = PRODUCERS_keys[num - 1]
-    const buying = PRODUCERS[key]
+    const buying = PRODUCERS[num]
+    const key = PRODUCERS_keys[num]
     if (!buying) return send("Invalid Hardware Index.")
     const owned = user.mined
     const price = PRICE_SCALE(buying[1], user[key])
-    console.log(price)
-    if (owned < price) return send("**Transaction Cancelled: Insufficient Funds**"), message.deleteAfter(5000)
-    user.sell(price)
-    user.buyP(key)
-    return send(`**Transaction Successful: One ${buying[2]}`)
+
   }
 })
