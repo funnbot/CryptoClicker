@@ -38,42 +38,42 @@ class Command {
    * @param {CommandOptions} options - Command Options
    */
   constructor(options) {
-    this.help = options.help || "The help message is missing."
-    this.help += this.help.endsWith(".") ? "" : "."
-    this.example = options.example || options.usage || ""
-    this.argExample = options.argExample || options.paramExample || ""
+      this.help = options.help || "The help message is missing.";
+      this.help += this.help.endsWith(".") ? "" : ".";
+      this.example = options.example || options.usage || "";
+      this.argExample = options.argExample || options.paramExample || "";
 
-    this.dm = options.dm || false
-    this.coolDown = options.coolDown || options.cooldown || 1
-    this.args = options.args || options.argumentHandler || []
+      this.dm = options.dm || false;
+      this.coolDown = options.coolDown || options.cooldown || 1;
+      this.args = options.args || options.argumentHandler || [];
 
-    this.perm = options.userPerms || options.perm || 0
-    this.botPerms = options.botPerms || options.botperms || []
+      this.perm = options.userPerms || options.perm || 0;
+      this.botPerms = options.botPerms || options.botperms || [];
 
-    this.alias = options.alias || []
+      this.alias = options.alias || [];
 
-    this.runCommand = options.run
+      this.runCommand = options.run;
     if (!this.runCommand) throw new Error("Command function undefined")
   }
 
   async run(message, bot, send, t) {
-    if (typeof this.runCommand === "string") send(this.runCommand).catch(logger.warn)
+      if (typeof this.runCommand === "string") send(this.runCommand).catch(logger.warn);
     else if (typeof this.runCommand === "function") {
       try {
         if (this.args.length > 0) {
-          let handleArguments = await bot.ArgumentHandler.run(message, this.args)
-          if (handleArguments == null) return
+            let handleArguments = await bot.ArgumentHandler.run(message, this.args);
+            if (handleArguments == null) return;
           message = handleArguments
         }
-        message.channel.startTyping()
-        await this.runCommand(message, bot, send, t)
+          message.channel.startTyping();
+          await this.runCommand(message, bot, send, t);
         message.channel.stopTyping()
       } catch (err) {
-        send("Command Error, Please alert the developer.").catch(logger.warn)
+          send("Command Error, Please alert the developer.").catch(logger.warn);
         logger.err(message.command + " - " + err.stack)
       }
     } else throw new Error("Invalid command type")
   }
 }
 
-module.exports = Command
+module.exports = Command;
